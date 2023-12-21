@@ -1,5 +1,7 @@
-import org.junit.jupiter.api.DisplayName;
+package org.yatzykata;
+
 import org.junit.jupiter.api.Test;
+import org.yatzykata.Yatzy;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,7 +48,6 @@ public class YatzyTest {
         assertEquals(8, new Yatzy(4,4,5,5,5).fours());
         assertEquals(4, new Yatzy(4,5,5,5,5).fours());
         assertEquals(0, new Yatzy(1,2,3,5,6).fours());
-
     }
 
     @Test
@@ -55,7 +56,6 @@ public class YatzyTest {
         assertEquals(15, new Yatzy(4,4,5,5,5).fives());
         assertEquals(20, new Yatzy(4,5,5,5,5).fives());
         assertEquals(0, new Yatzy(1,2,3,4,6).fives());
-
     }
 
     @Test
@@ -74,7 +74,6 @@ public class YatzyTest {
         assertEquals(0, Yatzy.score_pair(1,2,3,4,5));
         assertEquals(6, Yatzy.score_pair(3,3,3,4,1));
         assertEquals(6, Yatzy.score_pair(3,3,3,3,1));
-
     }
 
     @Test
