@@ -8,21 +8,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class ScoreTest {
 
     @Test
-    void getScore_returns_zero_score() {
+    void constructs_when_zero_score() {
         var zero_score = Score.of(0);
         assertEquals(0, zero_score.value());
     }
 
     @Test
-    void getScore_returns_positive_number() {
+    void constructs_when_positive_number() {
         var positive_score = Score.of(50);
         assertEquals(50, positive_score.value());
     }
 
     @Test
-    void getScore_fails_for_negative_number() {
+    void throws_IllegaleStateException_when_negative_number() {
         Executable exec = () -> Score.of(-1);
         Throwable thrown = assertThrows(IllegalStateException.class, exec);
         assertEquals("value must be a positive integer.", thrown.getMessage());
     }
+
 }
