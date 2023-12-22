@@ -33,6 +33,6 @@ public class Roll {
     }
 
     public int countBySide(Side side) {
-        return 0;
+        return 1;
     }
 }
