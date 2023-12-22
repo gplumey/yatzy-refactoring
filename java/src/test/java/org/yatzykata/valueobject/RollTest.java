@@ -13,23 +13,23 @@ class RollTest {
 
     @Test
     public void constructs_a_roll_of_one_dice() {
-        var roll = Roll.of( new Dice(Side.ONE));
-        var dices = roll.dices();
-        assertEquals(1, dices.size());
+        var roll = Roll.of(Side.ONE);
+        var sides = roll.read();
+        assertEquals(1, sides.size());
     }
 
     @ParameterizedTest
     @NullSource
-    void throw_IllegalStateException_when_a_dice_is_null(Dice nullDide) {
+    void throw_IllegalStateException_when_a_dice_is_null(Side nullDide) {
         Executable exec = () -> Roll.of(nullDide);
         Throwable thrown = assertThrows(IllegalStateException.class, exec);
-        assertEquals("All dices must not be null", thrown.getMessage());
+        assertEquals("All sides must not be null", thrown.getMessage());
     }
 
     @Test
     void throw_IllegalStateException_when_dices_is_null() {
         Executable exec = () -> new Roll(null);
         Throwable thrown = assertThrows(IllegalStateException.class, exec);
-        assertEquals("dices most not be null", thrown.getMessage());
+        assertEquals("sides most not be null", thrown.getMessage());
     }
 }
