@@ -35,7 +35,7 @@ class ScoreTest {
     private static Stream<Arguments> sum_a_and_b_fails() {
         return Stream.of(
             Arguments.of(Score.of(0), Score.of(0), Score.of(0))
-        )
+        );
     }
 
     @ParameterizedTest

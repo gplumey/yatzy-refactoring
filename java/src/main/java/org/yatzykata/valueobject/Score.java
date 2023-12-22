@@ -1,5 +1,7 @@
 package org.yatzykata.valueobject;
 
+import java.util.Objects;
+
 public record Score(int value) {
 
     public Score {
@@ -27,6 +29,7 @@ public record Score(int value) {
     }
 
     public Score sum(Score other) {
-        return null;
+        Objects.requireNonNull(other);
+        return new Score(this.value + other.value());
     }
 }
