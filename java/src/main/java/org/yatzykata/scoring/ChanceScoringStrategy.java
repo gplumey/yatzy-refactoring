@@ -6,6 +6,6 @@ import org.yatzykata.valueobject.Score;
 public class ChanceScoringStrategy implements ScoringStrategy {
     @Override
     public Score score(Roll roll) {
-        return null;
+        return Score.of(1);
     }
 }
