@@ -26,7 +26,7 @@ class ScoreTest {
     }
 
     @Test
-    void throws_IllegaleStateException_when_negative_number() {
+    void throws_IllegalStateException_when_negative_number() {
         Executable exec = () -> Score.of(-1);
         Throwable thrown = assertThrows(IllegalStateException.class, exec);
         assertEquals("value must be a positive integer.", thrown.getMessage());
