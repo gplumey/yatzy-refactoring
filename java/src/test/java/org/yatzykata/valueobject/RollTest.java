@@ -39,13 +39,17 @@ class RollTest {
     }
 
     static Stream<Arguments> countBySide_returns_the_count_of_the_given_side() {
-        return Stream.of(Arguments.of(
-            Side.ONE, Roll.of(Side.ONE)
-        ));
-    };
+        return Stream.of(
+            Arguments.of(1, Side.ONE, Roll.of(Side.ONE)),
+            Arguments.of(2, Side.ONE, Roll.of(Side.ONE, Side.ONE))
+        );
+    }
+
+    ;
+
     @ParameterizedTest
     @MethodSource
-    void countBySide_returns_the_count_of_the_given_side(Side side, Roll roll) {
-        assertEquals(1, roll.countBySide(side));
+    void countBySide_returns_the_count_of_the_given_side(int expectedCount, Side side, Roll roll) {
+        assertEquals(expectedCount, roll.countBySide(side));
     }
 }

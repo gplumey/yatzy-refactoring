@@ -32,7 +32,7 @@ public class Roll {
             '}';
     }
 
-    public int countBySide(Side side) {
+    public long countBySide(Side side) {
         return 1;
     }
 }
