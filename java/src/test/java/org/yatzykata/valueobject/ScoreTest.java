@@ -34,7 +34,10 @@ class ScoreTest {
 
     private static Stream<Arguments> sum_a_and_b_fails() {
         return Stream.of(
-            Arguments.of(Score.of(0), Score.of(0), Score.of(0))
+            Arguments.of(Score.of(0), Score.of(0), Score.of(0)),
+            Arguments.of(Score.of(99), Score.of(0), Score.of(99)),
+            Arguments.of(Score.of(50), Score.of(50), Score.of(0)),
+            Arguments.of(Score.of(100), Score.of(50), Score.of(50))
         );
     }
 
