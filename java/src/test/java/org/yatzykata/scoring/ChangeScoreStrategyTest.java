@@ -25,10 +25,9 @@ class ChangeScoreStrategyTest {
     static Stream<Arguments> calculateScore_returns_sum() {
         return Stream.of(
             Arguments.of(Score.of(1), Roll.of(Side.ONE)),
-            Arguments.of(Score.of(3), Roll.of(Side.ONE, Side.TWO))
-
-            //TODO: TEST case 2 :  Arguments.of(Score.of(15), Roll.of(Side.TWO, Side.THREE, Side.FOUR, Side.FIVE, Side.ONE))
-            //TODO: TEST case 1 : Arguments.of(Score.of(16), YatzyRoll.of(Side.THREE, Side.THREE, Side.FOUR, Side.FIVE, Side.ONE))
+            Arguments.of(Score.of(3), Roll.of(Side.ONE, Side.TWO)),
+            Arguments.of(Score.of(15), Roll.of(Side.TWO, Side.THREE, Side.FOUR, Side.FIVE, Side.ONE)),
+            Arguments.of(Score.of(16), Roll.of(Side.THREE, Side.THREE, Side.FOUR, Side.FIVE, Side.ONE))
         );
     }
 
