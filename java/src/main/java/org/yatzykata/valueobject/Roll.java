@@ -33,6 +33,6 @@ public class Roll {
     }
 
     public long countBySide(Side side) {
-        return 1;
+        return sides.stream().filter(tmpSide -> tmpSide == side).count();
     }
 }
