@@ -31,4 +31,8 @@ public class Roll {
             "sides=" + sides +
             '}';
     }
+
+    public int countBySide(Side side) {
+        return 0;
+    }
 }

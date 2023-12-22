@@ -1,9 +1,14 @@
 package org.yatzykata.valueobject;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,5 +36,16 @@ class RollTest {
         Executable exec = () -> new Roll(null);
         Throwable thrown = assertThrows(IllegalStateException.class, exec);
         assertEquals("sides most not be null", thrown.getMessage());
+    }
+
+    static Stream<Arguments> countBySide_returns_the_count_of_the_given_side() {
+        return Stream.of(Arguments.of(
+            Side.ONE, Roll.of(Side.ONE)
+        ));
+    };
+    @ParameterizedTest
+    @MethodSource
+    void countBySide_returns_the_count_of_the_given_side(Side side, Roll roll) {
+        assertEquals(1, roll.countBySide(side));
     }
 }
