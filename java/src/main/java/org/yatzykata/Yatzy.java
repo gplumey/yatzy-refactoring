@@ -19,7 +19,7 @@ public class Yatzy {
     }
 
     public Score yatzy(Roll roll) {
-        return Score.of(0);
+        return Score.of(50);
     }
 
     public static int yatzy(int... dice) {
