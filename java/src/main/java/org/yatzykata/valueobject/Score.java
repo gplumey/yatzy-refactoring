@@ -30,6 +30,7 @@ public record Score(int value) {
 
     public Score sum(Score other) {
         Objects.requireNonNull(other);
-        return new Score(this.value + other.value());
+        return new Score(this.value() + other.value());
     }
+
 }

@@ -32,7 +32,7 @@ class ScoreTest {
         assertEquals("value must be a positive integer.", thrown.getMessage());
     }
 
-    private static Stream<Arguments> sum_a_and_b_fails() {
+    private static Stream<Arguments> sum_a_and_b() {
         return Stream.of(
             Arguments.of(Score.of(0), Score.of(0), Score.of(0)),
             Arguments.of(Score.of(99), Score.of(0), Score.of(99)),
@@ -43,7 +43,8 @@ class ScoreTest {
 
     @ParameterizedTest
     @MethodSource
-    void sum_a_and_b_fails(Score expectedResult, Score a, Score b) {
+    void sum_a_and_b(Score expectedResult, Score a, Score b) {
         assertEquals(expectedResult, a.sum(b));
     }
+
 }

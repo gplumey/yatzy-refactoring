@@ -9,7 +9,13 @@ public enum Side {
         this.number = number;
     }
 
+
+
     public int number() {
         return number;
+    }
+
+    public Score score() {
+        return Score.of(this.number);
     }
 }
