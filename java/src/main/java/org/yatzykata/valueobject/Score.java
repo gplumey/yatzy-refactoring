@@ -25,4 +25,8 @@ public record Score(int value) {
         Score score1 = (Score) o;
         return value == score1.value;
     }
+
+    public Score sum(Score other) {
+        return null;
+    }
 }
