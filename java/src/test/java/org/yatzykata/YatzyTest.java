@@ -3,9 +3,14 @@ package org.yatzykata;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
 import org.yatzykata.valueobject.Side;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -33,6 +38,22 @@ public class YatzyTest {
             var roll = Roll.of(Side.THREE, Side.THREE, Side.FOUR, Side.FIVE, Side.ONE);
             var score = yatzy.chance(roll);
             assertEquals(Score.of(16), score);
+        }
+    }
+
+    @Nested
+    class YatzyScore {
+        static Stream<Arguments> yatzy_returns_50_when_all_dice_are_same() {
+            return Stream.of(Arguments.of(
+                Roll.of(Side.ONE)
+                ));
+
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void yatzy_returns_50_when_all_dice_are_same(Roll roll){
+            assertEquals(Score.of(50), yatzy.yatzy(roll));
         }
     }
 

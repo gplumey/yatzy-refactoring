@@ -18,7 +18,9 @@ public class Yatzy {
         return chanceScoringStrategy.score(roll);
     }
 
-
+    public Score yatzy(Roll roll) {
+        return Score.of(0);
+    }
 
     public static int yatzy(int... dice) {
         int[] counts = new int[6];
@@ -232,4 +234,6 @@ public class Yatzy {
         else
             return 0;
     }
+
+
 }
