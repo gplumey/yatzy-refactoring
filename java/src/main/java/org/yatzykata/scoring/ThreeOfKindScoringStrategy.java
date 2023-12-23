@@ -1,8 +1,10 @@
 package org.yatzykata.scoring;
 
 public class ThreeOfKindScoringStrategy extends AbstractNOfKindScoringStrategy {
-    @Override
-    protected int expectedNumberOfSameSide() {
-        return 3;
+    private final static int THREE_SIDES = 3;
+
+    protected ThreeOfKindScoringStrategy() {
+        super(THREE_SIDES);
     }
+
 }

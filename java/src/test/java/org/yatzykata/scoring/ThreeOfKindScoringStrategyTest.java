@@ -35,9 +35,8 @@ class ThreeOfKindScoringStrategyTest {
         assertEquals(expectedScore, threeOfKindScoringStrategy.score(roll));
     }
 
-
     @Test
-    void score_returns_ZERO_when_no_pair_exits() {
+    void score_returns_ZERO_when_not_exits() {
         var noPairRoll = Roll.of(Side.ONE, Side.THREE, Side.TWO, Side.FOUR, Side.ONE);
         assertEquals(Score.ZERO, threeOfKindScoringStrategy.score(noPairRoll));
     }

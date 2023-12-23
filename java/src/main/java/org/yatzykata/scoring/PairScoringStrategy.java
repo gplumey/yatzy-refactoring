@@ -1,8 +1,10 @@
 package org.yatzykata.scoring;
 
 public class PairScoringStrategy extends AbstractNOfKindScoringStrategy {
-    @Override
-    protected int expectedNumberOfSameSide() {
-        return 2;
+    private final static int TWO_SIDES = 2;
+
+    protected PairScoringStrategy() {
+        super(TWO_SIDES);
     }
+
 }
