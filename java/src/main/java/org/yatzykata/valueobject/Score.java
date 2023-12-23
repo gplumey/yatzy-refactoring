@@ -34,4 +34,8 @@ public record Score(int value) {
         Objects.requireNonNull(other);
         return new Score(this.value() + other.value());
     }
+
+    public Score multiple(int multiplier) {
+        return new Score(this.value * multiplier);
+    }
 }

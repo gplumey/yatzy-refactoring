@@ -14,6 +14,7 @@ public class SideScoringStrategy implements ScoringStrategy {
 
     @Override
     public Score score(Roll roll) {
-        return Score.of(1);
+        int sideCount = roll.countBySide(lookupSide);
+        return lookupSide.score().multiple(sideCount);
     }
 }

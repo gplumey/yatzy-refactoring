@@ -37,8 +37,8 @@ public class Roll {
             '}';
     }
 
-    public long countBySide(Side side) {
-        return countBySideMap.getOrDefault(side, 0L);
+    public int countBySide(Side side) {
+        return countBySideMap.getOrDefault(side, 0L).intValue();
     }
 
     public boolean areAllSideEqual() {

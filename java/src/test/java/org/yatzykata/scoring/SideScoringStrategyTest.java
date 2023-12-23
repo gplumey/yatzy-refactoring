@@ -15,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SideScoringStrategyTest {
 
-
     static Stream<Arguments> score_return_sum_of_sides_equals_to_the_given_side() {
         return Stream.of(
-            Arguments.of(Score.of(1), Side.ONE, Roll.of(Side.ONE))
+            Arguments.of(Score.of(1), Side.ONE, Roll.of(Side.ONE)),
+            Arguments.of(Score.of(2), Side.ONE, Roll.of(Side.ONE, Side.ONE))
         );
     }
 
