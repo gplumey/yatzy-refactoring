@@ -105,13 +105,45 @@ public class YatzyTest {
         assertEquals(4, Yatzy.ones(1, 2, 1, 1, 1));
     }
 
+
+    @Nested
+    class TwosScore {
+        static Stream<Arguments> twos_returns_count_of_sides_TWO_multiply_by_2() {
+            return Stream.of(
+                Arguments.of(Score.of(4), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.TWO, Side.SIX)),
+                Arguments.of(Score.of(10), Roll.of(Side.TWO, Side.TWO, Side.TWO, Side.TWO, Side.TWO)),
+                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.THREE, Side.FOUR, Side.FIVE, Side.FIVE))
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void twos_returns_count_of_sides_TWO_multiply_by_2(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.twos(roll));
+        }
+    }
     @Test
     public void twos_scores_the_sum_of_all_dice_equals_to_2() {
         assertEquals(4, Yatzy.twos(1, 2, 3, 2, 6));
         assertEquals(10, Yatzy.twos(2, 2, 2, 2, 2));
         assertEquals(0, Yatzy.twos(1, 3, 4, 5, 6));
     }
+    @Nested
+    class ThreesScore {
+        static Stream<Arguments> threes_returns_count_of_sides_THREE_multiply_by_3() {
+            return Stream.of(
+                Arguments.of(Score.of(6), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.TWO, Side.THREE)),
+                Arguments.of(Score.of(12), Roll.of(Side.TWO, Side.THREE, Side.THREE, Side.THREE, Side.THREE)),
+                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.TWO, Side.FOUR, Side.FIVE, Side.FIVE))
+            );
+        }
 
+        @ParameterizedTest
+        @MethodSource
+        void threes_returns_count_of_sides_THREE_multiply_by_3(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.threes(roll));
+        }
+    }
     @Test
     public void threes_scores_the_sum_of_all_dice_equals_to_3() {
         assertEquals(6, Yatzy.threes(1, 2, 3, 2, 3));
@@ -119,6 +151,24 @@ public class YatzyTest {
         assertEquals(0, Yatzy.threes(1, 2, 4, 5, 6));
     }
 
+
+    @Nested
+    class FoursScore {
+        static Stream<Arguments> fours_returns_count_of_sides_FOUR_multiply_by_4() {
+            return Stream.of(
+                Arguments.of(Score.of(12), Roll.of(Side.FOUR, Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.of(8), Roll.of(Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.of(4), Roll.of(Side.FOUR, Side.FIVE, Side.FIVE, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FIVE, Side.SIX))
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void fours_returns_count_of_sides_FOUR_multiply_by_4(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.fours(roll));
+        }
+    }
     @Test
     public void fours_scores_the_sum_of_all_dice_equals_to_4() {
         assertEquals(12, new Yatzy(4, 4, 4, 5, 5).fours());
@@ -126,6 +176,26 @@ public class YatzyTest {
         assertEquals(4, new Yatzy(4, 5, 5, 5, 5).fours());
         assertEquals(0, new Yatzy(1, 2, 3, 5, 6).fours());
     }
+
+
+    @Nested
+    class FivesScore {
+        static Stream<Arguments> fives_returns_count_of_sides_FIVE_multiply_by_5() {
+            return Stream.of(
+                Arguments.of(Score.of(10), Roll.of(Side.FOUR, Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.of(15), Roll.of(Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.of(20), Roll.of(Side.FOUR, Side.FIVE, Side.FIVE, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FOUR))
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void fives_returns_count_of_sides_FIVE_multiply_by_5(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.fives(roll));
+        }
+    }
+
 
     @Test
     public void fives_scores_the_sum_of_all_dice_equals_to_5() {
@@ -135,6 +205,24 @@ public class YatzyTest {
         assertEquals(0, new Yatzy(1, 2, 3, 4, 6).fives());
     }
 
+
+    @Nested
+    class SixesScore {
+        static Stream<Arguments> fives_returns_count_of_sides_SIXE_multiply_by_6() {
+            return Stream.of(
+                Arguments.of(Score.of(0), Roll.of(Side.FOUR, Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.of(6), Roll.of(Side.FOUR, Side.FOUR, Side.SIX, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.of(18), Roll.of(Side.SIX, Side.FIVE, Side.SIX, Side.SIX, Side.FIVE)),
+                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FIVE))
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void fives_returns_count_of_sides_SIXE_multiply_by_6(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.sixes(roll));
+        }
+    }
     @Test
     public void sixes_scores_the_sum_of_all_dice_equals_to_6() {
         assertEquals(0, new Yatzy(4, 4, 4, 5, 5).sixes());

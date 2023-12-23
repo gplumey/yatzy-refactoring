@@ -81,7 +81,6 @@ public class Yatzy {
         return sum;
     }
     @Deprecated
-
     public static int twos(int d1, int d2, int d3, int d4, int d5) {
         int sum = 0;
         if (d1 == 2) sum += 2;
