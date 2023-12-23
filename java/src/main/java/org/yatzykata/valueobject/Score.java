@@ -2,7 +2,7 @@ package org.yatzykata.valueobject;
 
 import java.util.Objects;
 
-public record Score(int value) {
+public record Score(int value) implements Comparable<Score> {
     public final static Score ZERO = Score.of(0);
     public final static Score YATZY = Score.of(50);
 
@@ -37,5 +37,10 @@ public record Score(int value) {
 
     public Score multiple(int multiplier) {
         return new Score(Math.multiplyExact(this.value, multiplier));
+    }
+
+    @Override
+    public int compareTo(Score other) {
+        return this.value - other.value;
     }
 }
