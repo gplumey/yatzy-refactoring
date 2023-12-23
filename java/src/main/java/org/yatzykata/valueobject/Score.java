@@ -36,6 +36,6 @@ public record Score(int value) {
     }
 
     public Score multiple(int multiplier) {
-        return new Score(this.value * multiplier);
+        return new Score(Math.multiplyExact(this.value, multiplier));
     }
 }
