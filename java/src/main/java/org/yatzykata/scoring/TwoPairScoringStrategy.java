@@ -10,7 +10,7 @@ import java.util.Comparator;
 public class TwoPairScoringStrategy implements ScoringStrategy {
     @Override
     public Score score(Roll roll) {
-        Collection<Side> pairs = roll.pairs();
+        Collection<Side> pairs = roll.atLeastNTime(2);
         if(pairs.size() > 1) {
             var sortByScoreDesc = pairs.stream().sorted(Comparator.comparing(Side::score, Comparator.reverseOrder()));
             var iterator = sortByScoreDesc.iterator();
