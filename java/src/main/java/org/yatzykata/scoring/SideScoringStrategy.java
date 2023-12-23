@@ -14,6 +14,6 @@ public class SideScoringStrategy implements ScoringStrategy {
 
     @Override
     public Score score(Roll roll) {
-        return Score.ZERO;
+        return Score.of(1);
     }
 }
