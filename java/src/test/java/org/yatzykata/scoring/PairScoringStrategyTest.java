@@ -27,4 +27,11 @@ class PairScoringStrategyTest {
        var twoPairRoll = Roll.of(Side.TWO, Side.THREE, Side.THREE, Side.TWO);
         assertEquals(Score.of(6), pairScoringStrategy.score(twoPairRoll));
     }
+
+    @Test
+    void score_sums_pair_when_triple() {
+        var singlePairRoll = Roll.of(Side.ONE, Side.ONE, Side.ONE);
+        assertEquals(Score.of(2), pairScoringStrategy.score(singlePairRoll));
+    }
+
 }
