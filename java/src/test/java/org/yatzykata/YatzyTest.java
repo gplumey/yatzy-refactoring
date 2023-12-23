@@ -44,9 +44,12 @@ public class YatzyTest {
     @Nested
     class YatzyScore {
         static Stream<Arguments> yatzy_returns_50_when_all_dice_are_same() {
-            return Stream.of(Arguments.of(
-                Roll.of(Side.ONE)
-            ));
+            return Stream.of(
+                Arguments.of(Roll.of(Side.ONE)),
+                Arguments.of(Roll.of(Side.TWO, Side.TWO)),
+                Arguments.of(Roll.of(Side.FOUR, Side.FOUR, Side.FOUR,Side.FOUR, Side.FOUR)),
+                Arguments.of(Roll.of(Side.SIX, Side.SIX, Side.SIX, Side.SIX, Side.SIX))
+            );
         }
 
         @ParameterizedTest
@@ -55,9 +58,16 @@ public class YatzyTest {
             assertEquals(Score.YATZY, yatzy.yatzy(roll));
         }
 
-        @Test
-        void yatzy_returns_0_when_one_dice_not_same() {
-            var notYatzyRoll = Roll.of(Side.ONE, Side.ONE, Side.ONE, Side.TWO, Side.ONE);
+        static Stream<Arguments> yatzy_returns_0_when_one_dice_not_same() {
+            return Stream.of(
+                Arguments.of(Roll.of(Side.ONE, Side.ONE, Side.ONE, Side.TWO, Side.ONE)),
+                Arguments.of(Roll.of(Side.SIX, Side.SIX, Side.SIX, Side.SIX, Side.THREE))
+                );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void yatzy_returns_0_when_one_dice_not_same(Roll notYatzyRoll) {
             assertEquals(Score.ZERO, yatzy.yatzy(notYatzyRoll));
         }
     }
