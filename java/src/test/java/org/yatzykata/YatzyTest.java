@@ -47,7 +47,7 @@ public class YatzyTest {
             return Stream.of(
                 Arguments.of(Roll.of(Side.ONE)),
                 Arguments.of(Roll.of(Side.TWO, Side.TWO)),
-                Arguments.of(Roll.of(Side.FOUR, Side.FOUR, Side.FOUR,Side.FOUR, Side.FOUR)),
+                Arguments.of(Roll.of(Side.FOUR, Side.FOUR, Side.FOUR, Side.FOUR, Side.FOUR)),
                 Arguments.of(Roll.of(Side.SIX, Side.SIX, Side.SIX, Side.SIX, Side.SIX))
             );
         }
@@ -62,13 +62,31 @@ public class YatzyTest {
             return Stream.of(
                 Arguments.of(Roll.of(Side.ONE, Side.ONE, Side.ONE, Side.TWO, Side.ONE)),
                 Arguments.of(Roll.of(Side.SIX, Side.SIX, Side.SIX, Side.SIX, Side.THREE))
-                );
+            );
         }
 
         @ParameterizedTest
         @MethodSource
         void yatzy_returns_0_when_one_dice_not_same(Roll notYatzyRoll) {
             assertEquals(Score.ZERO, yatzy.yatzy(notYatzyRoll));
+        }
+    }
+
+    @Nested
+    class OnesScore {
+        static Stream<Arguments> ones_returns_count_of_sides_ONE_multiply_by_1() {
+            return Stream.of(
+                Arguments.of(Score.of(1), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FIVE)),
+                Arguments.of(Score.of(2), Roll.of(Side.ONE, Side.TWO, Side.ONE, Side.FOUR, Side.FIVE)),
+                Arguments.of(Score.of(0), Roll.of(Side.SIX, Side.TWO, Side.TWO, Side.FOUR, Side.FIVE)),
+                Arguments.of(Score.of(4), Roll.of(Side.ONE, Side.TWO, Side.ONE, Side.ONE, Side.ONE))
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void ones_returns_count_of_sides_ONE_multiply_by_1(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.ones(roll));
         }
     }
 

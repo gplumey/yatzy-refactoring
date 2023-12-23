@@ -2,9 +2,11 @@ package org.yatzykata;
 
 import org.yatzykata.scoring.ChanceScoringStrategy;
 import org.yatzykata.scoring.ScoringStrategy;
+import org.yatzykata.scoring.SideScoringStrategy;
 import org.yatzykata.scoring.YatzyScoringStrategy;
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
+import org.yatzykata.valueobject.Side;
 
 public class Yatzy {
 
@@ -12,10 +14,21 @@ public class Yatzy {
 
     private  ScoringStrategy chanceScoringStrategy;
     private  ScoringStrategy yatzyScoringStrategy;
-
+    private  ScoringStrategy onesScoringStrategy;
+    private  ScoringStrategy twosScoringStrategy;
+    private  ScoringStrategy threesScoringStrategy;
+    private  ScoringStrategy foursScoringStrategy;
+    private  ScoringStrategy fivesScoringStrategy;
+    private  ScoringStrategy sixesScoringStrategy;
     public Yatzy() {
         this.chanceScoringStrategy = new ChanceScoringStrategy();
         this.yatzyScoringStrategy = new YatzyScoringStrategy();
+        this.onesScoringStrategy = new SideScoringStrategy(Side.ONE);
+        this.twosScoringStrategy = new SideScoringStrategy(Side.TWO);
+        this.threesScoringStrategy = new SideScoringStrategy(Side.THREE);
+        this.foursScoringStrategy = new SideScoringStrategy(Side.FOUR);
+        this.fivesScoringStrategy = new SideScoringStrategy(Side.FIVE);
+        this.sixesScoringStrategy = new SideScoringStrategy(Side.SIX);
     }
 
     public Score chance(Roll roll) {
@@ -24,6 +37,24 @@ public class Yatzy {
 
     public Score yatzy(Roll roll) {
         return yatzyScoringStrategy.score(roll);
+    }
+    public Score ones(Roll roll) {
+        return onesScoringStrategy.score(roll);
+    }
+    public Score twos(Roll roll) {
+        return twosScoringStrategy.score(roll);
+    }
+    public Score threes(Roll roll) {
+        return threesScoringStrategy.score(roll);
+    }
+    public Score fours(Roll roll) {
+        return foursScoringStrategy.score(roll);
+    }
+    public Score fives(Roll roll) {
+        return fivesScoringStrategy.score(roll);
+    }
+    public Score sixes(Roll roll) {
+        return sixesScoringStrategy.score(roll);
     }
 
     @Deprecated
@@ -37,6 +68,7 @@ public class Yatzy {
         return 0;
     }
 
+    @Deprecated
     public static int ones(int d1, int d2, int d3, int d4, int d5) {
         int sum = 0;
         if (d1 == 1) sum++;
@@ -48,6 +80,7 @@ public class Yatzy {
 
         return sum;
     }
+    @Deprecated
 
     public static int twos(int d1, int d2, int d3, int d4, int d5) {
         int sum = 0;
@@ -58,7 +91,7 @@ public class Yatzy {
         if (d5 == 2) sum += 2;
         return sum;
     }
-
+    @Deprecated
     public static int threes(int d1, int d2, int d3, int d4, int d5) {
         int s;
         s = 0;
@@ -81,7 +114,7 @@ public class Yatzy {
         dice[3] = d4;
         dice[4] = _5;
     }
-
+    @Deprecated
     public int fours() {
         int sum;
         sum = 0;
@@ -92,7 +125,7 @@ public class Yatzy {
         }
         return sum;
     }
-
+    @Deprecated
     public int fives() {
         int s = 0;
         int i;
@@ -101,7 +134,7 @@ public class Yatzy {
                 s = s + 5;
         return s;
     }
-
+    @Deprecated
     public int sixes() {
         int sum = 0;
         for (int at = 0; at < dice.length; at++)
