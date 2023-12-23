@@ -1,5 +1,6 @@
 package org.yatzykata.valueobject;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,4 +48,18 @@ class ScoreTest {
         assertEquals(expectedResult, a.sum(b));
     }
 
+    @Nested
+    class Multiply{
+        @Test
+        void multiple_5_by_4_returns_20() {
+            var result = Score.of(5).multiple(4);
+            assertEquals(Score.of(20), result);
+        }
+
+        @Test
+        void multiple_0_by_0_returns_0() {
+            var result = Score.ZERO.multiple(0);
+            assertEquals(Score.ZERO, result);
+        }
+    }
 }
