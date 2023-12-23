@@ -11,6 +11,7 @@ import org.yatzykata.valueobject.Score;
 import org.yatzykata.valueobject.Side;
 
 import java.util.stream.Stream;
+import static  org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Scoring rule for the 'Chance' category")
 class ChangeScoreStrategyTest {
@@ -22,7 +23,7 @@ class ChangeScoreStrategyTest {
         chanceScoringStrategy = new ChanceScoringStrategy();
     }
 
-    static Stream<Arguments> calculateScore_returns_sum() {
+    static Stream<Arguments> score_returns_sum() {
         return Stream.of(
             Arguments.of(Score.of(1), Roll.of(Side.ONE)),
             Arguments.of(Score.of(3), Roll.of(Side.ONE, Side.TWO)),
@@ -33,8 +34,8 @@ class ChangeScoreStrategyTest {
 
     @ParameterizedTest
     @MethodSource
-    void calculateScore_returns_sum(Score expectedScore, Roll roll) {
+    void score_returns_sum(Score expectedScore, Roll roll) {
         var calculatedScore = chanceScoringStrategy.score(roll);
-        Assertions.assertEquals(calculatedScore, expectedScore);
+        assertEquals(calculatedScore, expectedScore);
     }
 }
