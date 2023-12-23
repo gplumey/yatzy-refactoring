@@ -45,8 +45,6 @@ public class YatzyTest {
     class YatzyScore {
         static Stream<Arguments> yatzy_returns_50_when_all_dice_are_same() {
             return Stream.of(
-                Arguments.of(Roll.of(Side.ONE)),
-                Arguments.of(Roll.of(Side.TWO, Side.TWO)),
                 Arguments.of(Roll.of(Side.FOUR, Side.FOUR, Side.FOUR, Side.FOUR, Side.FOUR)),
                 Arguments.of(Roll.of(Side.SIX, Side.SIX, Side.SIX, Side.SIX, Side.SIX))
             );
