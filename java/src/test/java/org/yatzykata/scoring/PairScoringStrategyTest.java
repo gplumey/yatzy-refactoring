@@ -1,7 +1,6 @@
 package org.yatzykata.scoring;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -21,7 +20,7 @@ class PairScoringStrategyTest {
         this.pairScoringStrategy = new PairScoringStrategy();
     }
 
-    static Stream<Arguments> score_fails() {
+    static Stream<Arguments> score_pairs() {
         return Stream.of(
             Arguments.of(Roll.of(Side.ONE, Side.ONE, Side.TWO))
         );
@@ -29,7 +28,7 @@ class PairScoringStrategyTest {
 
     @ParameterizedTest
     @MethodSource
-    void score_fails(Roll roll) {
+    void score_pairs(Roll roll) {
         assertEquals(Score.of(2), pairScoringStrategy.score(roll));
     }
 
