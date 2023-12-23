@@ -51,7 +51,16 @@ public class Roll {
         return sideCountEntry.getValue() >= 2;
     }
 
+    private boolean isAtLeastNTime(int n, Map.Entry<Side, Long> sideCountEntry) {
+        return sideCountEntry.getValue() >= n;
+    }
     public Collection<Side> pairs() {
         return countBySideMap.entrySet().stream().filter(this::isPair).map(Map.Entry::getKey).toList();
+    }
+
+    public Collection<Side> atLeastNTime(int n) {
+        return countBySideMap.entrySet().stream()
+                             .filter(sideLongEntry -> isAtLeastNTime(n, sideLongEntry))
+                             .map(Map.Entry::getKey).toList();
     }
 }
