@@ -61,5 +61,13 @@ class ScoreTest {
             var result = Score.ZERO.multiple(0);
             assertEquals(Score.ZERO, result);
         }
+
+
+        @Test
+        void throws_when_multiplication_goes_out_of_MAX_INT() {
+            Executable exec = () -> Score.of(Integer.MAX_VALUE).multiple(Integer.MAX_VALUE);
+            Throwable thrown = assertThrows(RuntimeException.class, exec);
+            assertEquals("message", thrown.getMessage());
+        }
     }
 }
