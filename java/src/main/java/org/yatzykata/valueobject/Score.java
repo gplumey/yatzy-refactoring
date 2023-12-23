@@ -7,6 +7,7 @@ public record Score(int value) implements Comparable<Score> {
     public final static Score YATZY = Score.of(50);
 
     public final static Score SMALL_STRAIGHT = Score.of(15);
+    public final static Score LARGE_STRAIGHT = Score.of(20);
 
     public Score {
         if (value < 0) throw new IllegalStateException("value must be a positive integer.");
