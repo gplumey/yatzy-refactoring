@@ -3,6 +3,8 @@ package org.yatzykata.valueobject;
 import java.util.Objects;
 
 public record Score(int value) {
+    public final static Score ZERO = Score.of(0);
+    public final static Score YATZY = Score.of(50);
 
     public Score {
         if (value < 0) throw new IllegalStateException("value must be a positive integer.");
@@ -32,5 +34,4 @@ public record Score(int value) {
         Objects.requireNonNull(other);
         return new Score(this.value() + other.value());
     }
-
 }

@@ -46,14 +46,19 @@ public class YatzyTest {
         static Stream<Arguments> yatzy_returns_50_when_all_dice_are_same() {
             return Stream.of(Arguments.of(
                 Roll.of(Side.ONE)
-                ));
-
+            ));
         }
 
         @ParameterizedTest
         @MethodSource
-        void yatzy_returns_50_when_all_dice_are_same(Roll roll){
-            assertEquals(Score.of(50), yatzy.yatzy(roll));
+        void yatzy_returns_50_when_all_dice_are_same(Roll roll) {
+            assertEquals(Score.YATZY, yatzy.yatzy(roll));
+        }
+
+        @Test
+        void yatzy_returns_0_when_one_dice_not_same() {
+            var notYatzyRoll = Roll.of(Side.ONE, Side.ONE, Side.ONE, Side.TWO, Side.ONE);
+            assertEquals(Score.ZERO, yatzy.yatzy(notYatzyRoll));
         }
     }
 

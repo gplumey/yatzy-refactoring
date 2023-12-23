@@ -2,16 +2,20 @@ package org.yatzykata;
 
 import org.yatzykata.scoring.ChanceScoringStrategy;
 import org.yatzykata.scoring.ScoringStrategy;
+import org.yatzykata.scoring.YatzyScoringStrategy;
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
 
 public class Yatzy {
 
     //TODO: set as final once Deprecated contructor is removed
+
     private  ScoringStrategy chanceScoringStrategy;
+    private  ScoringStrategy yatzyScoringStrategy;
 
     public Yatzy() {
         this.chanceScoringStrategy = new ChanceScoringStrategy();
+        this.yatzyScoringStrategy = new YatzyScoringStrategy();
     }
 
     public Score chance(Roll roll) {
@@ -19,9 +23,10 @@ public class Yatzy {
     }
 
     public Score yatzy(Roll roll) {
-        return Score.of(50);
+        return yatzyScoringStrategy.score(roll);
     }
 
+    @Deprecated
     public static int yatzy(int... dice) {
         int[] counts = new int[6];
         for (int die : dice)

@@ -40,4 +40,8 @@ public class Roll {
     public long countBySide(Side side) {
         return countBySideMap.getOrDefault(side, 0L);
     }
+
+    public boolean areAllSideEqual() {
+        return countBySideMap.values().stream().max(Long::compareTo).get() == sides.size();
+    }
 }

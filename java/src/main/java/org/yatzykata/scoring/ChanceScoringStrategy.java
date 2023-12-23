@@ -7,7 +7,8 @@ import org.yatzykata.valueobject.Side;
 public class ChanceScoringStrategy implements ScoringStrategy {
     @Override
     public Score score(Roll roll) {
-        var initialScore = Score.of(0);
-        return  roll.read().stream().map(Side::score).reduce(initialScore, (total, sideScore ) -> total.sum(sideScore));
+        return roll.read().stream()
+                   .map(Side::score)
+                   .reduce(Score.ZERO, (total, sideScore) -> total.sum(sideScore));
     }
 }
