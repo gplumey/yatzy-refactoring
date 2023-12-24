@@ -16,12 +16,14 @@ public class FullHouseScoringStrategy implements ScoringStrategy {
     public Score score(Roll roll) {
         if (roll.read().size() == FULL_HOUSE_DICE_EXPECTED) {
             var counterTuples = roll.counterSideTuples();
-            var firstTuple =  counterTuples.get(0);
-            var secondTuple = counterTuples.get(1);
-            if (isFullHouse(firstTuple, secondTuple)) {
-                var firstScore = firstTuple.side().score().multiple(firstTuple.count());
-                var secondScore = secondTuple.side().score().multiple(secondTuple.count());
-                return firstScore.sum(secondScore);
+            if(counterTuples.size() == 2) {
+                var firstTuple =  counterTuples.get(0);
+                var secondTuple = counterTuples.get(1);
+                if (isFullHouse(firstTuple, secondTuple)) {
+                    var firstScore = firstTuple.side().score().multiple(firstTuple.count());
+                    var secondScore = secondTuple.side().score().multiple(secondTuple.count());
+                    return firstScore.sum(secondScore);
+                }
             }
         }
         return Score.ZERO;

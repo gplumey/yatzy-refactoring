@@ -320,8 +320,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void fullHouse_scores_ZERO_when_not_read(Roll roll) {
-            Roll notSmallStraightRoll = Roll.of(Side.ONE, Side.TWO, Side.TWO, Side.FOUR, Side.FIVE);
-            assertEquals(Score.ZERO, yatzy.fullHouse(notSmallStraightRoll));
+            assertEquals(Score.ZERO, yatzy.fullHouse(roll));
         }
     }
     @Test
