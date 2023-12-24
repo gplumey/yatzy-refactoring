@@ -88,7 +88,6 @@ public class YatzyTest {
         }
     }
 
-
     @Nested
     class TwosScore {
         static Stream<Arguments> twos_returns_count_of_sides_TWO_multiply_by_2() {
@@ -235,7 +234,6 @@ public class YatzyTest {
         }
     }
 
-
     @Nested
     class FourOfKindScore {
         static Stream<Arguments> four_of_a_kind_scores_the_sum_of_four_matching_dice_if_exit() {
@@ -276,17 +274,6 @@ public class YatzyTest {
         }
     }
 
-    @Test
-    /**
-     * smallStraight is when dice read 1,2,3,4,5.
-     */
-    public void smallStraight_scores_15() {
-        assertEquals(15, Yatzy.smallStraight(1, 2, 3, 4, 5));
-        assertEquals(15, Yatzy.smallStraight(2, 3, 4, 5, 1));
-        assertEquals(0, Yatzy.smallStraight(1, 2, 2, 4, 5));
-    }
-
-
     @Nested
     class LargeStraightScore {
         static Stream<Arguments> largeStraight_scores_LARGE_STRAIGHT() {
@@ -309,16 +296,34 @@ public class YatzyTest {
         }
     }
 
-    @Test
-    /**
-     * smallStraight is when dice read 2,3,4,5,6.
-     */
-    public void largeStraight_scores_20() {
-        assertEquals(20, Yatzy.largeStraight(6, 2, 3, 4, 5));
-        assertEquals(20, Yatzy.largeStraight(2, 3, 4, 5, 6));
-        assertEquals(0, Yatzy.largeStraight(1, 2, 2, 4, 5));
-    }
+    @Nested
+    class FullHouseScore {
+        static Stream<Arguments> fullHouse_scores_the_sum_of_all_dice() {
+            return Stream.of(
+                Arguments.of(Score.of(18), Roll.of(Side.SIX, Side.TWO, Side.TWO, Side.TWO, Side.SIX)),
+                Arguments.of(Score.of(8),Roll.of(Side.ONE, Side.TWO, Side.ONE, Side.TWO, Side.TWO))
+            );
+        }
 
+        @ParameterizedTest
+        @MethodSource
+        void fullHouse_scores_the_sum_of_all_dice(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.fullHouse(roll));
+        }
+        static Stream<Arguments> fullHouse_scores_ZERO_when_not_read() {
+            return Stream.of(
+                Arguments.of(Roll.of(Side.TWO, Side.THREE, Side.FOUR, Side.FIVE, Side.SIX)),
+                Arguments.of(Roll.of(Side.TWO, Side.TWO, Side.THREE, Side.THREE, Side.FOUR)),
+                Arguments.of(Roll.of(Side.FOUR, Side.FOUR, Side.FOUR, Side.FOUR, Side.FOUR))
+            );
+        }
+        @ParameterizedTest
+        @MethodSource
+        void fullHouse_scores_ZERO_when_not_read(Roll roll) {
+            Roll notSmallStraightRoll = Roll.of(Side.ONE, Side.TWO, Side.TWO, Side.FOUR, Side.FIVE);
+            assertEquals(Score.ZERO, yatzy.fullHouse(notSmallStraightRoll));
+        }
+    }
     @Test
     /**
      * smallStraight is when dice are two of a kind and three of a kind.
