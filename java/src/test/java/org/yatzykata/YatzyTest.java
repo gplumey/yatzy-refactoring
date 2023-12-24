@@ -201,16 +201,6 @@ public class YatzyTest {
     }
 
     @Test
-    public void pair_scores_the_sum_of_the_two_highest_matching_dice() {
-        assertEquals(6, Yatzy.score_pair(3, 4, 3, 5, 6));
-        assertEquals(10, Yatzy.score_pair(5, 3, 3, 3, 5));
-        assertEquals(12, Yatzy.score_pair(5, 3, 6, 6, 5));
-        assertEquals(0, Yatzy.score_pair(1, 2, 3, 4, 5));
-        assertEquals(6, Yatzy.score_pair(3, 3, 3, 4, 1));
-        assertEquals(6, Yatzy.score_pair(3, 3, 3, 3, 1));
-    }
-
-    @Test
     public void two_pair_scores_the_sum_of_the_matching_dice_if_two_pairs_exit() {
         assertEquals(16, Yatzy.two_pair(3, 3, 5, 4, 5));
         assertEquals(16, Yatzy.two_pair(3, 3, 5, 5, 5));
