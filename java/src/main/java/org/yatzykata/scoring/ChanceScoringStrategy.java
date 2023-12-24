@@ -9,6 +9,6 @@ public class ChanceScoringStrategy implements ScoringStrategy {
     public Score score(Roll roll) {
         return roll.read().stream()
                    .map(Side::score)
-                   .reduce(Score.ZERO, (total, sideScore) -> total.sum(sideScore));
+                   .reduce(Score.ZERO, Score::sum);
     }
 }

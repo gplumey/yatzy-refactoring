@@ -7,7 +7,7 @@ import org.yatzykata.valueobject.Side;
 import java.util.Set;
 
 public class LargeStraightScoringStrategy implements ScoringStrategy {
-    public static Set<Side> LARGE_STRAIGHT_SIDES = Set.of( Side.TWO, Side.THREE, Side.FOUR, Side.FIVE, Side.SIX);
+    private static final Set<Side> LARGE_STRAIGHT_SIDES = Set.of( Side.TWO, Side.THREE, Side.FOUR, Side.FIVE, Side.SIX);
 
     @Override
     public Score score(Roll roll) {

@@ -5,7 +5,6 @@ import java.util.Objects;
 public record Score(int value) implements Comparable<Score> {
     public final static Score ZERO = Score.of(0);
     public final static Score YATZY = Score.of(50);
-
     public final static Score SMALL_STRAIGHT = Score.of(15);
     public final static Score LARGE_STRAIGHT = Score.of(20);
 

@@ -82,8 +82,6 @@ public class Yatzy {
         return pairScoringStrategy.score(roll);
     }
 
-    ;
-
     public Score twoPair(Roll roll) {
         return twoPairScoringStrategy.score(roll);
     }

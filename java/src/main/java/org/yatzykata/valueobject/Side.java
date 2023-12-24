@@ -9,8 +9,6 @@ public enum Side {
         this.number = number;
     }
 
-
-
     public int number() {
         return number;
     }

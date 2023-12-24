@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Roll {
 
-    public  record CounterSideTuple(int count, Side side) {
+    public record CounterSideTuple(int count, Side side) {
 
         static CounterSideTuple of(Map.Entry<Side, Long> entry) {
             return new CounterSideTuple(entry.getValue().intValue(), entry.getKey());
@@ -36,16 +36,13 @@ public class Roll {
         return countBySideMap.entrySet().stream().map(CounterSideTuple::of).toList();
     }
 
-
     public static Roll of(Side... sides) {
         return new Roll(Arrays.stream(sides).toList());
     }
 
     @Override
     public String toString() {
-        return "Roll{" +
-            "sides=" + sides +
-            '}';
+        return "Roll{" + "sides=" + sides + '}';
     }
 
     public int countBySide(Side side) {
@@ -57,8 +54,6 @@ public class Roll {
     }
 
     public Collection<Side> atLeastNTime(int n) {
-        return countBySideMap.entrySet().stream()
-                             .filter(sideCountEntry -> sideCountEntry.getValue() >= n)
-                             .map(Map.Entry::getKey).toList();
+        return countBySideMap.entrySet().stream().filter(sideCountEntry -> sideCountEntry.getValue() >= n).map(Map.Entry::getKey).toList();
     }
 }
