@@ -323,14 +323,5 @@ public class YatzyTest {
             assertEquals(Score.ZERO, yatzy.fullHouse(roll));
         }
     }
-    @Test
-    /**
-     * smallStraight is when dice are two of a kind and three of a kind.
-     */
-    public void fullHouse_scores_the_sum_of_all_dice() {
-        assertEquals(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
-        assertEquals(0, Yatzy.fullHouse(2, 3, 4, 5, 6));
-        assertEquals(0, Yatzy.fullHouse(2, 2, 3, 3, 4));
-        assertEquals(0, Yatzy.fullHouse(4, 4, 4, 4, 4));
-    }
+
 }
