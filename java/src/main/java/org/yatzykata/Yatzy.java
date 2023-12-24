@@ -17,7 +17,8 @@ public class Yatzy {
     private final ScoringStrategy fivesScoringStrategy;
     private final ScoringStrategy sixesScoringStrategy;
 
-    private final ScoringStrategy paiScoringStrategy;
+    private final ScoringStrategy pairScoringStrategy;
+    private final ScoringStrategy twoPairScoringStrategy;
 
 
     public Yatzy() {
@@ -29,7 +30,9 @@ public class Yatzy {
         this.foursScoringStrategy = new SideScoringStrategy(Side.FOUR);
         this.fivesScoringStrategy = new SideScoringStrategy(Side.FIVE);
         this.sixesScoringStrategy = new SideScoringStrategy(Side.SIX);
-        this.paiScoringStrategy = new PairScoringStrategy();
+        this.pairScoringStrategy = new PairScoringStrategy();
+        this.twoPairScoringStrategy = new TwoPairScoringStrategy();
+
     }
 
     public Score chance(Roll roll) {
@@ -64,9 +67,10 @@ public class Yatzy {
         return sixesScoringStrategy.score(roll);
     }
 
-    public Score pair(Roll roll) { return paiScoringStrategy.score(roll);};
+    public Score pair(Roll roll) { return pairScoringStrategy.score(roll);};
+    public Score twoPair(Roll roll) { return twoPairScoringStrategy.score(roll);};
 
-
+    @Deprecated
     public static int two_pair(int d1, int d2, int d3, int d4, int d5) {
         int[] counts = new int[6];
         counts[d1 - 1]++;

@@ -177,8 +177,6 @@ public class YatzyTest {
         }
     }
 
-
-
     @Nested
     class PairScore {
         static Stream<Arguments> pair_scores_the_sum_of_the_two_highest_matching_dice() {
@@ -200,6 +198,24 @@ public class YatzyTest {
         }
     }
 
+
+
+    @Nested
+    class TwoPairScore {
+        static Stream<Arguments> two_pair_scores_the_sum_of_the_matching_dice_if_two_pairs_exit() {
+            return Stream.of(
+                Arguments.of(Score.of(16), Roll.of(Side.THREE, Side.THREE, Side.FIVE, Side.FOUR, Side.FIVE)),
+                Arguments.of(Score.of(16), Roll.of(Side.THREE, Side.THREE, Side.FIVE, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.ZERO, Roll.of(Side.ONE, Side.ONE, Side.TWO, Side.THREE, Side.FOUR)),
+                Arguments.of(Score.ZERO, Roll.of(Side.THREE, Side.THREE, Side.THREE, Side.THREE, Side.ONE))
+            );
+        }
+        @ParameterizedTest
+        @MethodSource
+        void two_pair_scores_the_sum_of_the_matching_dice_if_two_pairs_exit(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.twoPair(roll));
+        }
+    }
     @Test
     public void two_pair_scores_the_sum_of_the_matching_dice_if_two_pairs_exit() {
         assertEquals(16, Yatzy.two_pair(3, 3, 5, 4, 5));
