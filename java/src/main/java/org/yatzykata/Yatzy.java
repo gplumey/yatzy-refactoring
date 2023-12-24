@@ -1,9 +1,6 @@
 package org.yatzykata;
 
-import org.yatzykata.scoring.ChanceScoringStrategy;
-import org.yatzykata.scoring.ScoringStrategy;
-import org.yatzykata.scoring.SideScoringStrategy;
-import org.yatzykata.scoring.YatzyScoringStrategy;
+import org.yatzykata.scoring.*;
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
 import org.yatzykata.valueobject.Side;
@@ -20,6 +17,9 @@ public class Yatzy {
     private final ScoringStrategy fivesScoringStrategy;
     private final ScoringStrategy sixesScoringStrategy;
 
+    private final ScoringStrategy paiScoringStrategy;
+
+
     public Yatzy() {
         this.chanceScoringStrategy = new ChanceScoringStrategy();
         this.yatzyScoringStrategy = new YatzyScoringStrategy();
@@ -29,6 +29,7 @@ public class Yatzy {
         this.foursScoringStrategy = new SideScoringStrategy(Side.FOUR);
         this.fivesScoringStrategy = new SideScoringStrategy(Side.FIVE);
         this.sixesScoringStrategy = new SideScoringStrategy(Side.SIX);
+        this.paiScoringStrategy = new PairScoringStrategy();
     }
 
     public Score chance(Roll roll) {
@@ -38,25 +39,34 @@ public class Yatzy {
     public Score yatzy(Roll roll) {
         return yatzyScoringStrategy.score(roll);
     }
+
     public Score ones(Roll roll) {
         return onesScoringStrategy.score(roll);
     }
+
     public Score twos(Roll roll) {
         return twosScoringStrategy.score(roll);
     }
+
     public Score threes(Roll roll) {
         return threesScoringStrategy.score(roll);
     }
+
     public Score fours(Roll roll) {
         return foursScoringStrategy.score(roll);
     }
+
     public Score fives(Roll roll) {
         return fivesScoringStrategy.score(roll);
     }
+
     public Score sixes(Roll roll) {
         return sixesScoringStrategy.score(roll);
     }
 
+    public Score pair(Roll roll) { return paiScoringStrategy.score(roll);};
+
+    @Deprecated
     public static int score_pair(int d1, int d2, int d3, int d4, int d5) {
         int[] counts = new int[6];
         counts[d1 - 1]++;
@@ -186,6 +196,4 @@ public class Yatzy {
         else
             return 0;
     }
-
-
 }

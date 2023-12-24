@@ -76,7 +76,7 @@ public class YatzyTest {
             return Stream.of(
                 Arguments.of(Score.of(1), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FIVE)),
                 Arguments.of(Score.of(2), Roll.of(Side.ONE, Side.TWO, Side.ONE, Side.FOUR, Side.FIVE)),
-                Arguments.of(Score.of(0), Roll.of(Side.SIX, Side.TWO, Side.TWO, Side.FOUR, Side.FIVE)),
+                Arguments.of(Score.ZERO, Roll.of(Side.SIX, Side.TWO, Side.TWO, Side.FOUR, Side.FIVE)),
                 Arguments.of(Score.of(4), Roll.of(Side.ONE, Side.TWO, Side.ONE, Side.ONE, Side.ONE))
             );
         }
@@ -95,7 +95,7 @@ public class YatzyTest {
             return Stream.of(
                 Arguments.of(Score.of(4), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.TWO, Side.SIX)),
                 Arguments.of(Score.of(10), Roll.of(Side.TWO, Side.TWO, Side.TWO, Side.TWO, Side.TWO)),
-                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.THREE, Side.FOUR, Side.FIVE, Side.FIVE))
+                Arguments.of(Score.ZERO, Roll.of(Side.ONE, Side.THREE, Side.FOUR, Side.FIVE, Side.FIVE))
             );
         }
 
@@ -112,7 +112,7 @@ public class YatzyTest {
             return Stream.of(
                 Arguments.of(Score.of(6), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.TWO, Side.THREE)),
                 Arguments.of(Score.of(12), Roll.of(Side.TWO, Side.THREE, Side.THREE, Side.THREE, Side.THREE)),
-                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.TWO, Side.FOUR, Side.FIVE, Side.FIVE))
+                Arguments.of(Score.ZERO, Roll.of(Side.ONE, Side.TWO, Side.FOUR, Side.FIVE, Side.FIVE))
             );
         }
 
@@ -130,7 +130,7 @@ public class YatzyTest {
                 Arguments.of(Score.of(12), Roll.of(Side.FOUR, Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE)),
                 Arguments.of(Score.of(8), Roll.of(Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE, Side.FIVE)),
                 Arguments.of(Score.of(4), Roll.of(Side.FOUR, Side.FIVE, Side.FIVE, Side.FIVE, Side.FIVE)),
-                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FIVE, Side.SIX))
+                Arguments.of(Score.ZERO, Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FIVE, Side.SIX))
             );
         }
 
@@ -148,7 +148,7 @@ public class YatzyTest {
                 Arguments.of(Score.of(10), Roll.of(Side.FOUR, Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE)),
                 Arguments.of(Score.of(15), Roll.of(Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE, Side.FIVE)),
                 Arguments.of(Score.of(20), Roll.of(Side.FOUR, Side.FIVE, Side.FIVE, Side.FIVE, Side.FIVE)),
-                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FOUR))
+                Arguments.of(Score.ZERO, Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FOUR))
             );
         }
 
@@ -166,7 +166,7 @@ public class YatzyTest {
                 Arguments.of(Score.of(0), Roll.of(Side.FOUR, Side.FOUR, Side.FOUR, Side.FIVE, Side.FIVE)),
                 Arguments.of(Score.of(6), Roll.of(Side.FOUR, Side.FOUR, Side.SIX, Side.FIVE, Side.FIVE)),
                 Arguments.of(Score.of(18), Roll.of(Side.SIX, Side.FIVE, Side.SIX, Side.SIX, Side.FIVE)),
-                Arguments.of(Score.of(0), Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FIVE))
+                Arguments.of(Score.ZERO, Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FIVE))
             );
         }
 
@@ -174,6 +174,29 @@ public class YatzyTest {
         @MethodSource
         void fives_returns_count_of_sides_SIXE_multiply_by_6(Score expectedScore, Roll roll) {
             assertEquals(expectedScore, yatzy.sixes(roll));
+        }
+    }
+
+
+
+    @Nested
+    class PairScore {
+        static Stream<Arguments> pair_scores_the_sum_of_the_two_highest_matching_dice() {
+            return Stream.of(
+                Arguments.of(Score.of(6), Roll.of(Side.THREE, Side.FOUR, Side.THREE, Side.FIVE, Side.SIX)),
+                Arguments.of(Score.of(10), Roll.of(Side.FIVE, Side.THREE, Side.THREE, Side.THREE, Side.FIVE)),
+                Arguments.of(Score.of(12), Roll.of(Side.FIVE, Side.THREE, Side.SIX, Side.SIX, Side.FIVE)),
+                Arguments.of(Score.of(6), Roll.of(Side.THREE, Side.THREE, Side.THREE, Side.FOUR, Side.ONE)),
+                Arguments.of(Score.of(6), Roll.of(Side.THREE, Side.THREE, Side.THREE, Side.THREE, Side.ONE)),
+                Arguments.of(Score.ZERO, Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FIVE))
+
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void pair_scores_the_sum_of_the_two_highest_matching_dice(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.pair(roll));
         }
     }
 
