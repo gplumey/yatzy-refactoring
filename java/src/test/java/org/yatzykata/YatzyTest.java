@@ -198,8 +198,6 @@ public class YatzyTest {
         }
     }
 
-
-
     @Nested
     class TwoPairScore {
         static Stream<Arguments> two_pair_scores_the_sum_of_the_matching_dice_if_two_pairs_exit() {
@@ -217,6 +215,25 @@ public class YatzyTest {
         }
     }
 
+    @Nested
+    class ThreeOfKindScore {
+        static Stream<Arguments> three_of_a_kind_scores_the_sum_of_three_matching_dice_if_exit() {
+            return Stream.of(
+                Arguments.of(Score.of(9), Roll.of(Side.THREE, Side.THREE, Side.THREE, Side.FOUR, Side.FIVE)),
+                Arguments.of(Score.of(15), Roll.of(Side.FIVE, Side.THREE, Side.FIVE, Side.FOUR, Side.FIVE)),
+                Arguments.of(Score.of(9), Roll.of(Side.THREE, Side.THREE, Side.THREE, Side.THREE, Side.FIVE)),
+                Arguments.of(Score.ZERO, Roll.of(Side.THREE, Side.THREE, Side.FOUR, Side.FIVE, Side.SIX)),
+                Arguments.of(Score.of(9), Roll.of(Side.THREE, Side.THREE, Side.THREE, Side.THREE, Side.THREE))
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void three_of_a_kind_scores_the_sum_of_three_matching_dice_if_exit(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.threeOfKing(roll));
+        }
+    }
+
     @Test
     public void three_of_a_kind_scores_the_sum_of_three_matching_dice_if_exit() {
         assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 4, 5));
@@ -225,6 +242,25 @@ public class YatzyTest {
         assertEquals(0, Yatzy.three_of_a_kind(3, 3, 4, 5, 6));
         assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 3));
     }
+
+    @Nested
+    class FourOfKindScore {
+        static Stream<Arguments> four_of_a_kind_scores_the_sum_of_four_matching_dice_if_exit() {
+            return Stream.of(
+                Arguments.of(Score.of(12), Roll.of(Side.THREE, Side.THREE, Side.THREE, Side.THREE, Side.FIVE)),
+                Arguments.of(Score.of(20), Roll.of(Side.FIVE, Side.FIVE, Side.FIVE, Side.FOUR, Side.FIVE)),
+                Arguments.of(Score.ZERO, Roll.of(Side.TWO, Side.TWO, Side.TWO, Side.FIVE, Side.FIVE)),
+                Arguments.of(Score.of(8), Roll.of(Side.TWO, Side.TWO, Side.TWO, Side.TWO, Side.TWO))
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void four_of_a_kind_scores_the_sum_of_four_matching_dice_if_exit(Score expectedScore, Roll roll) {
+            assertEquals(expectedScore, yatzy.fourOfKing(roll));
+        }
+    }
+
 
     @Test
     public void four_of_a_kind_scores_the_sum_of_four_matching_dice_if_exit() {

@@ -20,6 +20,8 @@ public class Yatzy {
     private final ScoringStrategy pairScoringStrategy;
     private final ScoringStrategy twoPairScoringStrategy;
 
+    private final ScoringStrategy threeOfKingScoringStrategy;
+    private final ScoringStrategy fourOfKingScoringStrategy;
 
     public Yatzy() {
         this.chanceScoringStrategy = new ChanceScoringStrategy();
@@ -32,7 +34,8 @@ public class Yatzy {
         this.sixesScoringStrategy = new SideScoringStrategy(Side.SIX);
         this.pairScoringStrategy = new PairScoringStrategy();
         this.twoPairScoringStrategy = new TwoPairScoringStrategy();
-
+        this.threeOfKingScoringStrategy = new ThreeOfKindScoringStrategy();
+        this.fourOfKingScoringStrategy = new FourOfKindScoringStrategy();
     }
 
     public Score chance(Roll roll) {
@@ -67,10 +70,25 @@ public class Yatzy {
         return sixesScoringStrategy.score(roll);
     }
 
-    public Score pair(Roll roll) { return pairScoringStrategy.score(roll);};
-    public Score twoPair(Roll roll) { return twoPairScoringStrategy.score(roll);};
+    public Score pair(Roll roll) {
+        return pairScoringStrategy.score(roll);
+    }
 
+    ;
 
+    public Score twoPair(Roll roll) {
+        return twoPairScoringStrategy.score(roll);
+    }
+
+    public Score threeOfKing(Roll roll) {
+        return this.threeOfKingScoringStrategy.score(roll);
+    }
+
+    public Score fourOfKing(Roll roll) {
+        return this.fourOfKingScoringStrategy.score(roll);
+    }
+
+    @Deprecated
     public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5) {
         int[] tallies;
         tallies = new int[6];
@@ -85,6 +103,7 @@ public class Yatzy {
         return 0;
     }
 
+    @Deprecated
     public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5) {
         int[] t;
         t = new int[6];
