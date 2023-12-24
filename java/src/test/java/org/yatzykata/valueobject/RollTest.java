@@ -1,5 +1,6 @@
 package org.yatzykata.valueobject;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
@@ -10,14 +11,13 @@ import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RollTest {
 
 
     @Test
-    public void constructs_a_roll_of_one_dice() {
+    void constructs_a_roll_of_one_dice() {
         var roll = Roll.of(Side.ONE);
         var sides = roll.read();
         assertEquals(1, sides.size());
@@ -52,5 +52,18 @@ class RollTest {
     @MethodSource
     void countBySide_returns_the_count_of_the_given_side(int expectedCount, Side side, Roll roll) {
         assertEquals(expectedCount, roll.countBySide(side));
+    }
+
+    @Nested
+    class EmptyRoll {
+
+        Roll roll = Roll.of();
+
+        @Test
+        void areAllSideEqual(){
+            assertFalse(roll.areAllSideEqual());
+        }
+
+
     }
 }
