@@ -25,7 +25,6 @@ class FullHouseScoringStrategyTest {
         return Stream.of(
             Arguments.of(Score.of(7), Roll.of( Side.ONE, Side.ONE, Side.ONE, Side.TWO,Side.TWO)),
             Arguments.of(Score.of(13), Roll.of( Side.THREE, Side.THREE, Side.THREE, Side.TWO,Side.TWO))
-
         );
     }
 

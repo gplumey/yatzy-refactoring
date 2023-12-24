@@ -2,27 +2,26 @@ package org.yatzykata.scoring;
 
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
-import org.yatzykata.valueobject.Side;
-
-import java.util.Collection;
-import java.util.function.Predicate;
 
 public class FullHouseScoringStrategy implements ScoringStrategy {
     private static final int FULL_HOUSE_DICE_EXPECTED = 5;
 
+
+    private static boolean isFullHouse(Roll.CounterSideTuple first, Roll.CounterSideTuple second) {
+        return first.count() == 3 && second.count() == 2
+            || first.count() == 2 && second.count() == 3;
+    }
+
     @Override
     public Score score(Roll roll) {
         if (roll.read().size() == FULL_HOUSE_DICE_EXPECTED) {
-            Collection<Side> threes = roll.atLeastNTime(3);
-            if (!threes.isEmpty()) {
-                var threesSide = threes.iterator().next();
-                Collection<Side> twos = roll.atLeastNTime(2);
-                var twosMinusThrees = twos.stream().filter(Predicate.not(Predicate.isEqual(threesSide))).findFirst();
-                if (twosMinusThrees.isPresent()) {
-                    var threesScore = threesSide.score().multiple(3);
-                    var twosScore = twosMinusThrees.get().score().multiple(2);
-                    return threesScore.sum(twosScore);
-                }
+            var counterTuples = roll.counterSideTuples();
+            var firstTuple =  counterTuples.get(0);
+            var secondTuple = counterTuples.get(1);
+            if (isFullHouse(firstTuple, secondTuple)) {
+                var firstScore = firstTuple.side().score().multiple(firstTuple.count());
+                var secondScore = secondTuple.side().score().multiple(secondTuple.count());
+                return firstScore.sum(secondScore);
             }
         }
         return Score.ZERO;

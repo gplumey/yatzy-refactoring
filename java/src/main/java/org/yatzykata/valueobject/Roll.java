@@ -8,6 +8,13 @@ import java.util.stream.Collectors;
 
 public class Roll {
 
+    public  record CounterSideTuple(int count, Side side) {
+
+        static CounterSideTuple of(Map.Entry<Side, Long> entry) {
+            return new CounterSideTuple(entry.getValue().intValue(), entry.getKey());
+        }
+    }
+
     private final List<Side> sides;
 
     private final Map<Side, Long> countBySideMap;
@@ -23,6 +30,10 @@ public class Roll {
 
     public Collection<Side> read() {
         return sides;
+    }
+
+    public List<CounterSideTuple> counterSideTuples() {
+        return countBySideMap.entrySet().stream().map(CounterSideTuple::of).toList();
     }
 
 
