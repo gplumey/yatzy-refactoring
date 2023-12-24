@@ -208,6 +208,7 @@ public class YatzyTest {
                 Arguments.of(Score.ZERO, Roll.of(Side.THREE, Side.THREE, Side.THREE, Side.THREE, Side.ONE))
             );
         }
+
         @ParameterizedTest
         @MethodSource
         void two_pair_scores_the_sum_of_the_matching_dice_if_two_pairs_exit(Score expectedScore, Roll roll) {
@@ -253,6 +254,28 @@ public class YatzyTest {
         }
     }
 
+    @Nested
+    class SmallStraightScore {
+        static Stream<Arguments> smallStraight_scores_15() {
+            return Stream.of(
+                Arguments.of(Roll.of(Side.ONE, Side.TWO, Side.THREE, Side.FOUR, Side.FIVE)),
+                Arguments.of(Roll.of(Side.TWO, Side.THREE, Side.FOUR, Side.FIVE, Side.ONE))
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void smallStraight_scores_15(Roll roll) {
+            assertEquals(Score.SMALL_STRAIGHT, yatzy.smallStraight(roll));
+        }
+
+        @Test
+        void smallStraight_scores_ZERO_not_read() {
+            Roll notSmallStraightRoll = Roll.of(Side.ONE, Side.TWO, Side.TWO, Side.FOUR, Side.FIVE);
+            assertEquals(Score.ZERO, yatzy.smallStraight(notSmallStraightRoll));
+        }
+    }
+
     @Test
     /**
      * smallStraight is when dice read 1,2,3,4,5.
@@ -261,6 +284,29 @@ public class YatzyTest {
         assertEquals(15, Yatzy.smallStraight(1, 2, 3, 4, 5));
         assertEquals(15, Yatzy.smallStraight(2, 3, 4, 5, 1));
         assertEquals(0, Yatzy.smallStraight(1, 2, 2, 4, 5));
+    }
+
+
+    @Nested
+    class LargeStraightScore {
+        static Stream<Arguments> largeStraight_scores_LARGE_STRAIGHT() {
+            return Stream.of(
+                Arguments.of(Roll.of(Side.SIX, Side.TWO, Side.THREE, Side.FOUR, Side.FIVE)),
+                Arguments.of(Roll.of(Side.TWO, Side.THREE, Side.FOUR, Side.FIVE, Side.SIX))
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource
+        void largeStraight_scores_LARGE_STRAIGHT(Roll roll) {
+            assertEquals(Score.LARGE_STRAIGHT, yatzy.largeStraight(roll));
+        }
+
+        @Test
+        void largeStraight_scores_ZERO_not_read() {
+            Roll notSmallStraightRoll = Roll.of(Side.ONE, Side.TWO, Side.TWO, Side.FOUR, Side.FIVE);
+            assertEquals(Score.ZERO, yatzy.largeStraight(notSmallStraightRoll));
+        }
     }
 
     @Test

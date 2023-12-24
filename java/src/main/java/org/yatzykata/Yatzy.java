@@ -23,6 +23,10 @@ public class Yatzy {
     private final ScoringStrategy threeOfKingScoringStrategy;
     private final ScoringStrategy fourOfKingScoringStrategy;
 
+    private final ScoringStrategy smallStraightScoringStrategy;
+    private final ScoringStrategy largeStraightScoringStrategy;
+
+
     public Yatzy() {
         this.chanceScoringStrategy = new ChanceScoringStrategy();
         this.yatzyScoringStrategy = new YatzyScoringStrategy();
@@ -36,6 +40,8 @@ public class Yatzy {
         this.twoPairScoringStrategy = new TwoPairScoringStrategy();
         this.threeOfKingScoringStrategy = new ThreeOfKindScoringStrategy();
         this.fourOfKingScoringStrategy = new FourOfKindScoringStrategy();
+        this.smallStraightScoringStrategy = new SmallStraightScoringStrategy();
+        this.largeStraightScoringStrategy = new LargeStraightScoringStrategy();
     }
 
     public Score chance(Roll roll) {
@@ -86,6 +92,14 @@ public class Yatzy {
 
     public Score fourOfKing(Roll roll) {
         return this.fourOfKingScoringStrategy.score(roll);
+    }
+
+    public Score smallStraight(Roll roll) {
+        return this.smallStraightScoringStrategy.score(roll);
+    }
+
+    public Score largeStraight(Roll roll) {
+        return this.largeStraightScoringStrategy.score(roll);
     }
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
