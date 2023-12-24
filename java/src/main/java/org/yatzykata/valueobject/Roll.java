@@ -53,8 +53,7 @@ public class Roll {
     }
 
     public boolean areAllSideEqual() {
-        //TODO: fix bug when not present
-        return countBySideMap.values().stream().max(Long::compareTo).get() == sides.size();
+        return countBySideMap.values().stream().max(Long::compareTo).orElse(-1L) == sides.size();
     }
 
     public Collection<Side> atLeastNTime(int n) {

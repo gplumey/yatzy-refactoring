@@ -46,8 +46,6 @@ class RollTest {
         );
     }
 
-    ;
-
     @ParameterizedTest
     @MethodSource
     void countBySide_returns_the_count_of_the_given_side(int expectedCount, Side side, Roll roll) {
@@ -55,15 +53,33 @@ class RollTest {
     }
 
     @Nested
-    class EmptyRoll {
+    class EmptyCheckRoll {
 
         Roll roll = Roll.of();
 
         @Test
-        void areAllSideEqual(){
+        void areAllSideEqual_returns_false(){
             assertFalse(roll.areAllSideEqual());
         }
 
+        @Test
+        void read_returns_empty_collection(){
+            assertEquals(0, roll.read().size());
+        }
+
+        @Test
+        void atLeastNTime_returns_empty_collection(){
+            assertEquals(0, roll.atLeastNTime(1).size());
+        }
+
+        @Test
+        void countBySide_returns_0(){
+            assertEquals(0, roll.countBySide(Side.ONE));
+        }
+        @Test
+        void counterSideTuples_returns_empty_collection(){
+            assertEquals(0, roll.counterSideTuples().size());
+        }
 
     }
 }
