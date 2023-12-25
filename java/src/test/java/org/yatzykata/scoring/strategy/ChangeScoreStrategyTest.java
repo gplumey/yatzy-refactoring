@@ -1,11 +1,11 @@
-package org.yatzykata.scoring;
+package org.yatzykata.scoring.strategy;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.yatzykata.scoring.strategy.ChanceScoringStrategy;
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
 import org.yatzykata.valueobject.Side;

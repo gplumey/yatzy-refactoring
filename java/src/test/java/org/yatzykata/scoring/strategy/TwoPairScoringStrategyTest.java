@@ -1,7 +1,8 @@
-package org.yatzykata.scoring;
+package org.yatzykata.scoring.strategy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.yatzykata.scoring.strategy.TwoPairScoringStrategy;
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
 import org.yatzykata.valueobject.Side;

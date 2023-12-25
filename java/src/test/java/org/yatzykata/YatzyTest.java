@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.yatzykata.scoring.ScoringStrategyFactoryImpl;
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
 import org.yatzykata.valueobject.Side;
@@ -20,7 +21,7 @@ public class YatzyTest {
 
     @BeforeEach
     public void setup() {
-        this.yatzy = new Yatzy();
+        this.yatzy = new Yatzy(new ScoringStrategyFactoryImpl());
     }
 
     @Nested

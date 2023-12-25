@@ -1,5 +1,6 @@
-package org.yatzykata.scoring;
+package org.yatzykata.scoring.strategy;
 
+import org.yatzykata.scoring.ScoringStrategy;
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
 import org.yatzykata.valueobject.Side;
