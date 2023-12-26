@@ -57,7 +57,7 @@ Don't implement code that is not yet require yet, and follow the KISS principal.
 ## Class diagram after refactoring
 ```mermaid
 classDiagram
-    class Yatzy {
+    class YatzyScoringRules {
         chance(Roll roll) Score
         yatzy(Roll roll) Score
         ones(Roll roll) Score
@@ -109,14 +109,14 @@ classDiagram
     }
 
 
-    Yatzy ..>  Roll :"use"
-    Yatzy ..>  Score : "use"
+    YatzyScoringRules ..>  Roll :"use"
+    YatzyScoringRules ..>  Score : "use"
     ScoringStrategy ..> Score : "create"
     ScoringStrategyFactoryImpl ..> ScoringStrategy
     ScoringStrategyFactoryImpl ..> "Instantiate" ChanceScoringStrategy
     ScoringStrategyFactoryImpl ..> "Instantiate" OtherConcreteScoringStrategy
 
-    Yatzy o-- ScoringStrategyFactory
+    YatzyScoringRules o-- ScoringStrategyFactory
     ScoringStrategyFactoryImpl --|> ScoringStrategyFactory
     ChanceScoringStrategy --|> ScoringStrategy
     OtherConcreteScoringStrategy --|> ScoringStrategy

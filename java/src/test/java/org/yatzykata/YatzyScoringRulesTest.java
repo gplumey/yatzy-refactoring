@@ -15,13 +15,13 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class YatzyTest {
+public class YatzyScoringRulesTest {
 
-    Yatzy yatzy;
+    YatzyScoringRules yatzyScoringRules;
 
     @BeforeEach
     public void setup() {
-        this.yatzy = new Yatzy(new ScoringStrategyFactoryImpl());
+        this.yatzyScoringRules = new YatzyScoringRules(new ScoringStrategyFactoryImpl());
     }
 
     @Nested
@@ -30,14 +30,14 @@ public class YatzyTest {
         @Test
         void chance_returns_15_for_2_3_4_5_1() {
             var roll = Roll.of(Side.TWO, Side.THREE, Side.FOUR, Side.FIVE, Side.ONE);
-            var score = yatzy.chance(roll);
+            var score = yatzyScoringRules.chance(roll);
             assertEquals(Score.of(15), score);
         }
 
         @Test
         void chance_returns_16_for_2_3_4_5_1() {
             var roll = Roll.of(Side.THREE, Side.THREE, Side.FOUR, Side.FIVE, Side.ONE);
-            var score = yatzy.chance(roll);
+            var score = yatzyScoringRules.chance(roll);
             assertEquals(Score.of(16), score);
         }
     }
@@ -54,7 +54,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void yatzy_returns_50_when_all_dice_are_same(Roll roll) {
-            assertEquals(Score.YATZY, yatzy.yatzy(roll));
+            assertEquals(Score.YATZY, yatzyScoringRules.yatzy(roll));
         }
 
         static Stream<Arguments> yatzy_returns_0_when_one_dice_not_same() {
@@ -67,7 +67,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void yatzy_returns_0_when_one_dice_not_same(Roll notYatzyRoll) {
-            assertEquals(Score.ZERO, yatzy.yatzy(notYatzyRoll));
+            assertEquals(Score.ZERO, yatzyScoringRules.yatzy(notYatzyRoll));
         }
     }
 
@@ -85,7 +85,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void ones_returns_count_of_sides_ONE_multiply_by_1(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.ones(roll));
+            assertEquals(expectedScore, yatzyScoringRules.ones(roll));
         }
     }
 
@@ -102,7 +102,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void twos_returns_count_of_sides_TWO_multiply_by_2(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.twos(roll));
+            assertEquals(expectedScore, yatzyScoringRules.twos(roll));
         }
     }
 
@@ -119,7 +119,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void threes_returns_count_of_sides_THREE_multiply_by_3(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.threes(roll));
+            assertEquals(expectedScore, yatzyScoringRules.threes(roll));
         }
     }
 
@@ -137,7 +137,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void fours_returns_count_of_sides_FOUR_multiply_by_4(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.fours(roll));
+            assertEquals(expectedScore, yatzyScoringRules.fours(roll));
         }
     }
 
@@ -155,7 +155,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void fives_returns_count_of_sides_FIVE_multiply_by_5(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.fives(roll));
+            assertEquals(expectedScore, yatzyScoringRules.fives(roll));
         }
     }
 
@@ -173,7 +173,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void fives_returns_count_of_sides_SIXE_multiply_by_6(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.sixes(roll));
+            assertEquals(expectedScore, yatzyScoringRules.sixes(roll));
         }
     }
 
@@ -194,7 +194,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void pair_scores_the_sum_of_the_two_highest_matching_dice(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.pair(roll));
+            assertEquals(expectedScore, yatzyScoringRules.pair(roll));
         }
     }
 
@@ -212,7 +212,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void two_pair_scores_the_sum_of_the_matching_dice_if_two_pairs_exit(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.twoPair(roll));
+            assertEquals(expectedScore, yatzyScoringRules.twoPair(roll));
         }
     }
 
@@ -231,7 +231,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void three_of_a_kind_scores_the_sum_of_three_matching_dice_if_exit(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.threeOfKing(roll));
+            assertEquals(expectedScore, yatzyScoringRules.threeOfKing(roll));
         }
     }
 
@@ -249,7 +249,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void four_of_a_kind_scores_the_sum_of_four_matching_dice_if_exit(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.fourOfKing(roll));
+            assertEquals(expectedScore, yatzyScoringRules.fourOfKing(roll));
         }
     }
 
@@ -265,13 +265,13 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void smallStraight_scores_15(Roll roll) {
-            assertEquals(Score.SMALL_STRAIGHT, yatzy.smallStraight(roll));
+            assertEquals(Score.SMALL_STRAIGHT, yatzyScoringRules.smallStraight(roll));
         }
 
         @Test
         void smallStraight_scores_ZERO_not_read() {
             Roll notSmallStraightRoll = Roll.of(Side.ONE, Side.TWO, Side.TWO, Side.FOUR, Side.FIVE);
-            assertEquals(Score.ZERO, yatzy.smallStraight(notSmallStraightRoll));
+            assertEquals(Score.ZERO, yatzyScoringRules.smallStraight(notSmallStraightRoll));
         }
     }
 
@@ -287,13 +287,13 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void largeStraight_scores_LARGE_STRAIGHT(Roll roll) {
-            assertEquals(Score.LARGE_STRAIGHT, yatzy.largeStraight(roll));
+            assertEquals(Score.LARGE_STRAIGHT, yatzyScoringRules.largeStraight(roll));
         }
 
         @Test
         void largeStraight_scores_ZERO_not_read() {
             Roll notSmallStraightRoll = Roll.of(Side.ONE, Side.TWO, Side.TWO, Side.FOUR, Side.FIVE);
-            assertEquals(Score.ZERO, yatzy.largeStraight(notSmallStraightRoll));
+            assertEquals(Score.ZERO, yatzyScoringRules.largeStraight(notSmallStraightRoll));
         }
     }
 
@@ -309,7 +309,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void fullHouse_scores_the_sum_of_all_dice(Score expectedScore, Roll roll) {
-            assertEquals(expectedScore, yatzy.fullHouse(roll));
+            assertEquals(expectedScore, yatzyScoringRules.fullHouse(roll));
         }
         static Stream<Arguments> fullHouse_scores_ZERO_when_not_read() {
             return Stream.of(
@@ -321,7 +321,7 @@ public class YatzyTest {
         @ParameterizedTest
         @MethodSource
         void fullHouse_scores_ZERO_when_not_read(Roll roll) {
-            assertEquals(Score.ZERO, yatzy.fullHouse(roll));
+            assertEquals(Score.ZERO, yatzyScoringRules.fullHouse(roll));
         }
     }
 

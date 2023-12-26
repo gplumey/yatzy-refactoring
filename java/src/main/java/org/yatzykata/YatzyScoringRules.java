@@ -5,11 +5,11 @@ import org.yatzykata.valueobject.Category;
 import org.yatzykata.valueobject.Roll;
 import org.yatzykata.valueobject.Score;
 
-public class Yatzy {
+public class YatzyScoringRules {
 
     private final ScoringStrategyFactory scoringStrategyFactory;
 
-    public Yatzy(ScoringStrategyFactory scoringStrategyFactory) {
+    public YatzyScoringRules(ScoringStrategyFactory scoringStrategyFactory) {
        this.scoringStrategyFactory = scoringStrategyFactory;
     }
 
